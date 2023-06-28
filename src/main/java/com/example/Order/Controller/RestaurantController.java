@@ -1,6 +1,7 @@
 package com.example.Order.Controller;
 
 import com.example.Order.Dao.RestaurantRepo;
+import com.example.Order.Dao.UserRepo;
 import com.example.Order.Entity.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class RestaurantController {
 
     @Autowired
     private RestaurantRepo restaurantRepo;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @GetMapping("/restaurant/all")
     public List<Restaurant> showAll() {
