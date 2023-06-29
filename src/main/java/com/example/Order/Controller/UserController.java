@@ -31,6 +31,12 @@ public class UserController {
         return this.userRepo.findById(id);
     }
 
+    //get user by email
+    @GetMapping("/user/find/{email}")
+    public Optional<User> getUserByEmail(@PathVariable String email) {
+        return this.userRepo.getUserByEmail(email);
+    }
+
     //post user
     @PostMapping("/user")
     public User addUser(@RequestBody User user) {
