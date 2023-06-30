@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,11 +61,11 @@ public class RestaurantController {
     //add a restaurant by userid and restaurant
     @PostMapping("/user/{userId}/restaurant")
     public ResponseEntity<Restaurant> createRestaurant(@PathVariable(value = "userId") int userId,
-                                              @RequestBody Restaurant newRestaurant) throws Exception {
+                                                       @RequestBody Restaurant newRestaurant) throws Exception {
         Restaurant restaurant = userRepo.findById(userId).map(user -> {
             user.getRestaurants().add(newRestaurant);
             return restaurantRepo.save(newRestaurant);
-        }).orElseThrow(() -> new Exception("Not found Tutorial with id = " + userId));
+        }).orElseThrow(() -> new Exception("Not found User with id = " + userId));
 
         return new ResponseEntity<>(restaurant, HttpStatus.CREATED);
     }

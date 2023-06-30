@@ -27,4 +27,11 @@ public class Restaurant {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "restaurant_id")
     private Set<Dish> dishes = new HashSet<>();
+
+//    @OneToOne(mappedBy = "restaurant")
+//    private ImageData image;
+
+    private String imageName;
+
+
 }
