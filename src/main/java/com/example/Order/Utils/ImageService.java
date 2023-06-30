@@ -22,21 +22,22 @@ public class ImageService {
 
     public void uploadImage(MultipartFile file, int restaurantId) throws IOException {
         ImageData imageData = imageRepo.save(ImageData.builder()
-                .restaurantId(restaurantId)
+                .restId(restaurantId)
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .imageData(ImageUtils.decompressImage(file.getBytes())).build());
-        Optional<Restaurant> rest = this.restaurantRepo.findById(restaurantId);
-        rest.get().setImageName(file.getOriginalFilename());
+//        Optional<Restaurant> rest = this.restaurantRepo.findById(restaurantId);
+//        rest.get().setImageName(file.getOriginalFilename());
+//        this.restaurantRepo.save(rest.get());
 //        imageData.setRestaurant(rest.get());
         if (imageData != null ){
-            System.out.println("Image uploaded Successfully to : " + rest.get());
+            System.out.println("Image uploaded Successfully");
         }
 
     }
 
-    public byte[] downloadImage( String fileName){
-        Optional<ImageData> dbImageData = imageRepo.findByName(fileName);
+    public byte[] downloadImage(Long fileId){
+        Optional<ImageData> dbImageData = imageRepo.findById(fileId);
         byte[] images = ImageUtils.compressImage(dbImageData.get().getImageData());
         return images;
     }

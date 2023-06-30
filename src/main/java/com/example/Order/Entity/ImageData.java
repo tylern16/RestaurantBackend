@@ -25,8 +25,10 @@ public class ImageData {
     @Column(name = "imagedata",length = 1000)
     private byte[] imageData;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
-    private int restaurantId;
+
+    private int restId;
 
 }
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")

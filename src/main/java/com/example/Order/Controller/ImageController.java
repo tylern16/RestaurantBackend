@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ImageController {
 
@@ -22,9 +23,9 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/{fileName}")
-    public ResponseEntity<?> downloadImage (@PathVariable String fileName){
-        byte[] imageData = imageService.downloadImage(fileName);
+    @GetMapping("/file/{fileId}")
+    public ResponseEntity<?> downloadImage (@PathVariable Long fileId){
+        byte[] imageData = imageService.downloadImage(fileId);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/jpg"))
                 .body(imageData);
