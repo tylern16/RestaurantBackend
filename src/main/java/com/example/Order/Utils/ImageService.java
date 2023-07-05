@@ -36,9 +36,18 @@ public class ImageService {
 
     }
 
-    public byte[] downloadImage(Long fileId){
+    public byte[] downloadImage(Long restaurantId){
+        Optional<ImageData> dbImageData = imageRepo.findByRestId(restaurantId);
+        if (dbImageData.isPresent()) {
+            System.out.println("SUCCESS: Image present" );
+            return ImageUtils.decompressImage(dbImageData.get().getImageData());
+        }
+        System.out.println("ERROR: Image not present" );
+        return new byte[0];
+    }
+
+    public String getImageName(Long fileId){
         Optional<ImageData> dbImageData = imageRepo.findById(fileId);
-        byte[] images = ImageUtils.compressImage(dbImageData.get().getImageData());
-        return images;
+        return dbImageData.get().getName();
     }
 }
