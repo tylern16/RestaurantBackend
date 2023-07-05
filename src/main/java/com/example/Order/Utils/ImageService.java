@@ -25,7 +25,7 @@ public class ImageService {
                 .restId(restaurantId)
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
-                .imageData(ImageUtils.decompressImage(file.getBytes())).build());
+                .imageData(ImageUtils.compressImage(file.getBytes())).build());
 //        Optional<Restaurant> rest = this.restaurantRepo.findById(restaurantId);
 //        rest.get().setImageName(file.getOriginalFilename());
 //        this.restaurantRepo.save(rest.get());
