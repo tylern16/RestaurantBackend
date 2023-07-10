@@ -23,6 +23,12 @@ public class Restaurant {
 
     private String name;
 
+    private boolean hasLicense;
+
+    private String address;
+
+    private String cuisine;
+
     // TODO: 6/27/23 going to be file
     private String license;
 

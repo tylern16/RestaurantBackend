@@ -63,6 +63,7 @@ public class DishController {
 
         dish.setName(updatedDish.getName());
         dish.setCost(updatedDish.getCost());
+        dish.setDescription(updatedDish.getDescription());
 
         return new ResponseEntity<>(dishRepo.save(dish), HttpStatus.OK);
     }

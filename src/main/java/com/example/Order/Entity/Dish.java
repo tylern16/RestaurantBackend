@@ -21,4 +21,6 @@ public class Dish {
     private String name;
 
     private float cost;
+
+    private String description;
 }

@@ -35,13 +35,15 @@ public class ImageController {
 
     @GetMapping("/file/{fileId}")
     public ResponseEntity<?> downloadImage (@PathVariable Long fileId){
-        Optional<ImageData> image = imageRepo.findByRestId(fileId);
+        //Optional<ImageData> image = imageRepo.findByRestId(fileId);
         byte[] imageData = imageService.downloadImage(fileId);
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.parseMediaType(image.get().getType()))
-                .body(imageData);
+        //String imageName = imageRepo.findByRestId(fileId).get().getName();
+        return new ResponseEntity<>(
+                imageRepo.findByRestId(fileId),
+                HttpStatus.OK);
     }
 
+    //not working
     @GetMapping("/filename/{fileId}")
     public String downloadImageName (@PathVariable Long fileId){
         return imageService.getImageName(fileId);

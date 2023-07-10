@@ -83,6 +83,10 @@ public class RestaurantController {
                 .orElseThrow(() -> new Exception("Restaurant " + id + "not found"));
 
         restaurant.setName(updatedRestaurant.getName());
+        restaurant.setLicense(updatedRestaurant.getLicense());
+        restaurant.setHasLicense(updatedRestaurant.isHasLicense());
+        restaurant.setCuisine(updatedRestaurant.getCuisine());
+        restaurant.setAddress(updatedRestaurant.getAddress());
 
         return new ResponseEntity<>(restaurantRepo.save(restaurant), HttpStatus.OK);
     }
